@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 console.log("My first git practice");
 let myName = "Yelminho";
 let myAge = 26;
