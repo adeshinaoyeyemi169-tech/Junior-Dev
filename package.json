@@ -2,7 +2,7 @@
   "name": "junior-dev",
   "version": "1.0.0",
   "description": "Junior Developer Exercise TypeScript and Git GitHub.",
-  "main": "pro.js",
+  "main": "hello.js",
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",

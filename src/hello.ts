@@ -128,8 +128,8 @@ type PaymentResult =
 
 function describePayment(result: PaymentResult) {
 switch (result.status) {
-case "success":
-return Payment success! Amount: ${result.amount};
+case "success": 
+return `Payment success! Amount: ${result.amount}`;
 case "failed":
 return Payment failed: ${result.reason};
 case "pending":
@@ -161,3 +161,11 @@ export function LogCall(
 
   return descriptor;
 }
+
+function chalk(colour: string, price: number): string {
+  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
+}
+console.log(chalk("red", 500));
+
+let chalkColour: string = "blue";
+let chalkPrice: number = 300;
