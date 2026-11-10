@@ -193,6 +193,19 @@ type PaymentResult =
   | { status: "failed"; reason: string }
   | { status: "pending" };
 
+function describePayment(result: PaymentResult) {
+switch (result.status) {
+case "success": 
+return `Payment success! Amount: ${result.amount}`;
+case "failed":
+return Payment failed: ${result.reason};
+case "pending":
+return Payment still dey pending...;
+default:
+// Exhaustive check - if you add new status for up and no handle am, e go give error here
+const _exhaustive: never = result;
+return _exhaustive;
+}
 function describePayment(result: PaymentResult): string {
   switch (result.status) {
     case "success":
@@ -370,3 +383,12 @@ export function LogCall(
 
   return descriptor;
 }
+
+function chalk(colour: string, price: number): string {
+  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
+}
+console.log(chalk("red", 500));
+
+let chalkColour: string = "blue";
+let chalkPrice: number = 300;
+
