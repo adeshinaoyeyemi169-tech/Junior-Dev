@@ -1,35 +1,134 @@
-// ======================================================
-// 1. BASIC OUTPUT
-// ======================================================
-
-console.log("Hello Yelminho, TypeScript don set!");
 
 // ======================================================
-// 2. BASIC FUNCTIONS
+// 10. LIBRARY HELPER FUNCTIONS
 // ======================================================
 
-function calculateTotal(price: number, quantity: number): number {
-  return price * quantity;
+function findBookById(bookId: number): Book | undefined {
+  return library.books.find((book) => book.id === bookId);
 }
 
-function getFullName(firstName: string, lastName: string): string {
-  return `${firstName} ${lastName}`;
+function getActiveMembers(): Member[] {
+  return library.members.filter((member) => member.isActive);
 }
 
-function isEligibleToVote(age: number): boolean {
-  return age >= 18;
+function getAvailableBooks(): Book[] {
+  return library.books.filter((book) => book.isAvailable);
 }
 
-function calculateDiscount(price: number, discountPercentage: number): number {
-  return price - (price * discountPercentage) / 100;
+function getMemberLoanCount(memberId: number): number {
+  return library.loans.filter((loan) => loan.memberId === memberId).length;
 }
 
-function calculateAverage(numbers: number[]): number {
-  if (numbers.length === 0) return 0;
+console.log("Book:", findBookById(23));
+console.log("Active members:", getActiveMembers());
+console.log("Available books:", getAvailableBooks());
 
-  const total = numbers.reduce((sum, number) => sum + number, 0);
-  return total / numbers.length;
+// ======================================================
+// 11. CLASSES AND ACCESS MODIFIERS
+// ======================================================
+
+class BankAccount {
+  private balance: number;
+
+  constructor(
+    public accountNumber: string,
+    public accountName: string,
+    initialBalance: number
+  ) {
+    this.balance = initialBalance;
+  }
+
+  deposit(amount: number): void {
+    if (amount <= 0) {
+      throw new Error("Deposit amount must be greater than zero");
+    }
+
+    this.balance += amount;
+  }
+
+  withdraw(amount: number): void {
+    if (amount <= 0 || amount > this.balance) {
+      throw new Error("Invalid withdrawal amount");
+    }
+
+    this.balance -= amount;
+  }
+
+  getBalance(): number {
+    return this.balance;
+  }
 }
+
+const account = new BankAccount("1234567890", "John Doe", 50000);
+
+account.deposit(10000);
+account.withdraw(5000);
+
+console.log("Account balance:", account.getBalance());
+
+// ======================================================
+// 12. INTERFACES
+// ======================================================
+
+interface Notification {
+  id: number;
+  message: string;
+  isRead: boolean;
+  createdAt: string;
+}
+
+const notifications: Notification[] = [
+  {
+    id: 1,
+    message: "Your payment was successful",
+    isRead: false,
+    createdAt: "2026-11-10",
+  },
+  {
+    id: 2,
+    message: "Your account has been updated",
+    isRead: true,
+    createdAt: "2026-11-09",
+  },
+];
+
+function getUnreadNotifications(): Notification[] {
+  return notifications.filter((notification) => !notification.isRead);
+}
+
+// ======================================================
+// 13. DECORATORS
+// ======================================================
+
+export function LogCall(
+  _target: object,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const original = descriptor.value;
+
+  descriptor.value = function (...args: unknown[]) {
+    console.log(`Calling ${propertyKey} with`, args);
+
+    const result = original.apply(this, args);
+
+    console.log(`${propertyKey} returned`, result);
+
+    return result;
+  };
+
+  return descriptor;
+}
+
+function chalk(colour: string, price: number): string {
+  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
+}
+console.log(chalk("red", 500));
+
+let chalkColour: string = "blue";
+let chalkPrice: number = 300;
+
+
 
 // ======================================================
 // 3. VARIABLES AND BASIC DATA TYPES
@@ -264,131 +363,35 @@ console.log("Lowest score:", getLowestScore(scores));
 console.log("Passed scores:", getPassedScores(scores));
 
 // ======================================================
-// 10. LIBRARY HELPER FUNCTIONS
+// 1. BASIC OUTPUT
 // ======================================================
 
-function findBookById(bookId: number): Book | undefined {
-  return library.books.find((book) => book.id === bookId);
-}
-
-function getActiveMembers(): Member[] {
-  return library.members.filter((member) => member.isActive);
-}
-
-function getAvailableBooks(): Book[] {
-  return library.books.filter((book) => book.isAvailable);
-}
-
-function getMemberLoanCount(memberId: number): number {
-  return library.loans.filter((loan) => loan.memberId === memberId).length;
-}
-
-console.log("Book:", findBookById(23));
-console.log("Active members:", getActiveMembers());
-console.log("Available books:", getAvailableBooks());
+console.log("Hello Yelminho, TypeScript don set!");
 
 // ======================================================
-// 11. CLASSES AND ACCESS MODIFIERS
+// 2. BASIC FUNCTIONS
 // ======================================================
 
-class BankAccount {
-  private balance: number;
-
-  constructor(
-    public accountNumber: string,
-    public accountName: string,
-    initialBalance: number
-  ) {
-    this.balance = initialBalance;
-  }
-
-  deposit(amount: number): void {
-    if (amount <= 0) {
-      throw new Error("Deposit amount must be greater than zero");
-    }
-
-    this.balance += amount;
-  }
-
-  withdraw(amount: number): void {
-    if (amount <= 0 || amount > this.balance) {
-      throw new Error("Invalid withdrawal amount");
-    }
-
-    this.balance -= amount;
-  }
-
-  getBalance(): number {
-    return this.balance;
-  }
+function calculateTotal(price: number, quantity: number): number {
+  return price * quantity;
 }
 
-const account = new BankAccount("1234567890", "John Doe", 50000);
-
-account.deposit(10000);
-account.withdraw(5000);
-
-console.log("Account balance:", account.getBalance());
-
-// ======================================================
-// 12. INTERFACES
-// ======================================================
-
-interface Notification {
-  id: number;
-  message: string;
-  isRead: boolean;
-  createdAt: string;
+function getFullName(firstName: string, lastName: string): string {
+  return `${firstName} ${lastName}`;
 }
 
-const notifications: Notification[] = [
-  {
-    id: 1,
-    message: "Your payment was successful",
-    isRead: false,
-    createdAt: "2026-11-10",
-  },
-  {
-    id: 2,
-    message: "Your account has been updated",
-    isRead: true,
-    createdAt: "2026-11-09",
-  },
-];
-
-function getUnreadNotifications(): Notification[] {
-  return notifications.filter((notification) => !notification.isRead);
+function isEligibleToVote(age: number): boolean {
+  return age >= 18;
 }
 
-// ======================================================
-// 13. DECORATORS
-// ======================================================
-
-export function LogCall(
-  _target: object,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-) {
-  const original = descriptor.value;
-
-  descriptor.value = function (...args: unknown[]) {
-    console.log(`Calling ${propertyKey} with`, args);
-
-    const result = original.apply(this, args);
-
-    console.log(`${propertyKey} returned`, result);
-
-    return result;
-  };
-
-  return descriptor;
+function calculateDiscount(price: number, discountPercentage: number): number {
+  return price - (price * discountPercentage) / 100;
 }
 
-function chalk(colour: string, price: number): string {
-  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
-}
-console.log(chalk("red", 500));
+function calculateAverage(numbers: number[]): number {
+  if (numbers.length === 0) return 0;
 
-let chalkColour: string = "blue";
-let chalkPrice: number = 300;
+  const total = numbers.reduce((sum, number) => sum + number, 0);
+  return total / numbers.length;
+}
 
