@@ -1,3 +1,10 @@
+function chalk(colour: string, price: number): string {
+  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
+}
+console.log(chalk("red", 500));
+
+const chalkColour: string = "blue";
+let chalkPrice: number = 300;
 // ======================================================
 // 1. BASIC OUTPUT
 // ======================================================
@@ -302,6 +309,14 @@ class BankAccount {
     this.balance = initialBalance;
   }
 
+  function chalk(colour: string, price: number): string {
+  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
+}
+console.log(chalk("red", 500));
+
+const chalkColour: string = "blue";
+let chalkPrice: number = 300;
+
   deposit(amount: number): void {
     if (amount <= 0) {
       throw new Error("Deposit amount must be greater than zero");
@@ -389,6 +404,6 @@ function chalk(colour: string, price: number): string {
 }
 console.log(chalk("red", 500));
 
-let chalkColour: string = "blue";
+const chalkColour: string = "blue";
 let chalkPrice: number = 300;
 
