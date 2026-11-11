@@ -394,5 +394,3 @@ function calculateAverage(numbers: number[]): number {
   const total = numbers.reduce((sum, number) => sum + number, 0);
   return total / numbers.length;
 }
-
-git
