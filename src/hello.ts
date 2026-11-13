@@ -1,11 +1,6 @@
-function chalk(colour: string, price: number): string {
-  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
-}
+// <<<<<<< HEAD
+// =======
 console.log(chalk("red", 500));
-
-const chalkColour: string = "blue";
-let chalkPrice: number = 300;
-
 // ======================================================
 // 10. LIBRARY HELPER FUNCTIONS
 // ======================================================
@@ -304,9 +299,9 @@ switch (result.status) {
 case "success": 
 return `Payment success! Amount: ${result.amount}`;
 case "failed":
-return Payment failed: ${result.reason};
+return `Payment failed: ${result.reason}`;
 case "pending":
-return Payment still dey pending...;
+return `Payment still dey pending...`;
 default:
 // Exhaustive check - if you add new status for up and no handle am, e go give error here
 const _exhaustive: never = result;
@@ -390,14 +385,6 @@ class BankAccount {
     this.balance = initialBalance;
   }
 
-  function chalk(colour: string, price: number): string {
-  return `Chalk: ${colour}, Price: $${price.toFixed(2)}`;
-}
-console.log(chalk("red", 500));
-
-const chalkColour: string = "blue";
-let chalkPrice: number = 300;
-
   deposit(amount: number): void {
     if (amount <= 0) {
       throw new Error("Deposit amount must be greater than zero");
@@ -417,28 +404,29 @@ let chalkPrice: number = 300;
   getBalance(): number {
     return this.balance;
   }
-function calculateTotal(price: number, quantity: number): number {
+ calculateTotal(price: number, quantity: number): number {
   return price * quantity;
 }
 
-function getFullName(firstName: string, lastName: string): string {
+ getFullName(firstName: string, lastName: string): string {
   return `${firstName} ${lastName}`;
 }
 
-function isEligibleToVote(age: number): boolean {
+ isEligibleToVote(age: number): boolean {
   return age >= 18;
 }
 
-function calculateDiscount(price: number, discountPercentage: number): number {
+ calculateDiscount(price: number, discountPercentage: number): number {
   return price - (price * discountPercentage) / 100;
 }
 
-function calculateAverage(numbers: number[]): number {
-  if (numbers.length === 0) return 0;
 
-const chalkColour: string = "blue";
-let chalkPrice: number = 300;
+ calculateAverage(numbers: number[]): number {
+  if (numbers.length === 0) {
+    return 0;
+}
   const total = numbers.reduce((sum, number) => sum + number, 0);
   return total / numbers.length;
 }
-
+}
+}
