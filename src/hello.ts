@@ -428,20 +428,5 @@ class BankAccount {
   const total = numbers.reduce((sum, number) => sum + number, 0);
   return total / numbers.length;
 }
-}
-}
 
-const transactions = [
-  { amount: 100, type: "credit" },
-  { amount: 20, type: "cash" },
-  { amount: 150, type: "credit" },
-  { amount: 50, type: "cash" },
-  { amount: 75, type: "credit" }
-];
-
-const totalCreditWithBonus = transactions
-  .filter((transaction) => transaction.type === "credit")
-  .map((transaction) => transaction.amount * 1.1)
-  .reduce((sum, amount) => sum + amount, 0);
-
-console.log(totalCreditWithBonus); // 357.5
+>>>>>>> a4ab47b7336ef0c52ea3ce546e912d95f196e8ec
